@@ -9,6 +9,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'view-design/dist/styles/iview.css'
 import Login from './view/login.vue'
+import Register from './view/register.vue'
 import Fundtrade from './view/panels/fundtrade.vue'
 import Recommendedcombination from './view/panels/recommendedcombination.vue'
 import Aboutfunds from './view/panels/aboutfunds.vue'
@@ -27,7 +28,8 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/fundtrade', component: Fundtrade },
   { path: '/recommendedcombination', component: Recommendedcombination },
-  { path: '/aboutfunds', component: Aboutfunds }
+  { path: '/aboutfunds', component: Aboutfunds },
+  { path: '/register', component: Register }
 ]
 // 创建router实例，然后传routes配置
 const router = new Router({
