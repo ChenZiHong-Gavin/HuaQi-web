@@ -34,10 +34,6 @@ export default {
 
 <style>
     body {
-        background-image: url(../assets/images/timg.jpg);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center center;
     }
 
     * {

@@ -5,12 +5,19 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import App from './App'
 import ViewUI from 'view-design'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import 'view-design/dist/styles/iview.css'
 import Login from './view/login.vue'
 import Fundtrade from './view/panels/fundtrade.vue'
 import Recommendedcombination from './view/panels/recommendedcombination.vue'
+import Aboutfunds from './view/panels/aboutfunds.vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ViewUI)
+Vue.use(ElementUI)
 Vue.use(Router)
+Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
 
@@ -19,7 +26,8 @@ Vue.config.productionTip = false
 const routes = [
   { path: '/login', component: Login },
   { path: '/fundtrade', component: Fundtrade },
-  { path: '/recommendedcombination', component: Recommendedcombination }
+  { path: '/recommendedcombination', component: Recommendedcombination },
+  { path: '/aboutfunds', component: Aboutfunds }
 ]
 // 创建router实例，然后传routes配置
 const router = new Router({

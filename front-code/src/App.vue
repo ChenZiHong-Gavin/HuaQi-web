@@ -11,20 +11,23 @@
   <router-link to="/recommendedcombination">
     <Button :size="buttonSize" shape="circle">智投组合</Button>
   </router-link>
-  <router-link to="">
+  <router-link to="/aboutfunds">
     <Button :size="buttonSize" shape="circle">关于基金</Button>
   </router-link>
   <router-link to="/login">
-   <Button type="primary">登陆</Button>
+   <Button type="primary">登录</Button>
   </router-link>
   <router-view></router-view>
+    <v-pictures/>
   </div>
 </template>
 
 <script>
+import Pictures from './view/mainPage/components/pictures.vue'
 export default {
   name: 'App',
   components: {
+    'v-pictures': Pictures
   }
 
 }
