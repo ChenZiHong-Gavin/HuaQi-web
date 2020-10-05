@@ -14,6 +14,13 @@
                 <img src="../assets/logos/password.png" width="20" height="20" alt="" />
                 <input type="text" placeholder="输入用户密码" />
             </div>
+            <div class="lgD">
+                <img src="../assets/logos/verify.png" width="20" height="20" alt="" />
+                <input type="text" placeholder="输入验证码" />
+            </div>
+            <div class="login-code" @click="refreshCode">
+                <v-verify ref="verify"/></v-verify>
+            </div>
             <div class="logC">
                 <a><button @click="login">登 录</button></a>
             </div>
@@ -22,11 +29,42 @@
 </template>
 
 <script>
+import Verify from './verify.vue'
 export default {
+  components: {
+    'v-verify': Verify
+  },
   methods: {
-    login () {
-      // 假设登陆成功，则跳转到 index 组件
-      this.$router.replace('/')
+    refreshCode () {
+      this.$refs.verify.refreshCode()
+    },
+    /**
+  * @description 提交表单
+  */
+    // 提交登录信息
+    submit () {
+      if (this.formLogin.code.toLowerCase() !== this.identifyCode.toLowerCase()) {
+        this.$message.error('请填写正确验证码')
+        this.refreshCode()
+        return
+      }
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          // 登录
+          // 注意 这里的演示没有传验证码
+          // 具体需要传递的数据请自行修改代码
+          // 假设登陆成功，则跳转到 index 组件
+          this.$router.replace('/')
+          this.login({
+            vm: this,
+            username: this.formLogin.username,
+            password: this.formLogin.password
+          })
+        } else {
+          // 登录表单校验失败
+          this.$message.error('表单校验失败')
+        }
+      })
     }
   }
 }
