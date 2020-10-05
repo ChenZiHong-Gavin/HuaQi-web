@@ -24,6 +24,7 @@
             <div class="logC">
                 <a><button @click="login">登 录</button></a>
             </div>
+            <p class="register" @click="gotoReg">没有账号？立即注册</p>
         </div>
     </div>
 </template>
@@ -37,6 +38,11 @@ export default {
   methods: {
     refreshCode () {
       this.$refs.verify.refreshCode()
+    },
+    gotoReg () {
+      this.$router.push({
+        path: '/register'
+      })
     },
     /**
   * @description 提交表单
@@ -95,7 +101,7 @@ export default {
         width: 368px;
         position: absolute;
         background-color: #FFFFFF;
-        top: 100px;
+        top: 50px;
     }
     .logC a button {
         width: 100%;
@@ -167,5 +173,14 @@ export default {
         height: 60px;
         width: 40%;
         text-align: center;
+    }
+    .register {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 22px;
+        color: #1ab2ff;
+        cursor: pointer;
+        text-align: center;
+        text-indent: 8px;
     }
 </style>

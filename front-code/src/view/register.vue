@@ -1,228 +1,148 @@
 <template>
-  <div>
-    <div class="register-wrapper">
-      <div id="register">
-        <p class="title">注册</p>
-        <el-form
-          :model="ruleForm2"
-          status-icon
-          :rules="rules2"
-          ref="ruleForm2"
-          label-width="0"
-          class="demo-ruleForm"
-        >
-          <el-form-item prop="tel">
-            <el-input v-model="ruleForm2.tel" auto-complete="off" placeholder="请输入手机号"></el-input>
-          </el-form-item>
-          <el-form-item prop="smscode" class="code">
-            <el-input v-model="ruleForm2.smscode" placeholder="验证码"></el-input>
-            <el-button type="primary" :disabled='isDisabled' @click="sendCode">{{buttonText}}</el-button>
-          </el-form-item>
-          <el-form-item prop="pass">
-            <el-input type="password" v-model="ruleForm2.pass" auto-complete="off" placeholder="输入密码"></el-input>
-          </el-form-item>
-          <el-form-item prop="checkPass">
-            <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="确认密码"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm2')" style="width:100%;">注册</el-button>
+<div class="wrap" id="wrap">
+        <div class="logGet">
+            <!-- 头部提示信息 -->
+            <div class="logD logDtip">
+                <p class="p1">欢迎来到Endorse</p>
+            </div>
+            <!-- 输入框 -->
+            <div class="lgD">
+                <img src="../assets/logos/login.png" width="20" height="20" alt="" />
+                <input type="text" placeholder="请输入你的用户名" />
+            </div>
+            <div class="lgD">
+                <img src="../assets/logos/password.png" width="20" height="20" alt="" />
+                <input type="text" placeholder="输入你的用户密码" />
+            </div>
+            <div class="lgD">
+                <img src="../assets/logos/verify.png" width="20" height="20" alt="" />
+                <input type="text" placeholder="请再次输入密码" />
+            </div>
+            <div class="logC">
+                <a><button @click="register">注 册 </button></a>
+            </div>
             <p class="login" @click="gotoLogin">已有账号？立即登录</p>
-          </el-form-item>
-        </el-form>
-      </div>
-    </div>
-  </div>
+        </div>
+</div>
 </template>
 
 <script>
 export default {
-  name: 'Register',
-  data () {
-    // <!--验证手机号是否合法-->
-    let checkTel = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入手机号码'))
-      } else if (!this.checkMobile(value)) {
-        callback(new Error('手机号码不合法'))
-      } else {
-        callback()
-      }
-    }
-    //  <!--验证码是否为空-->
-    let checkSmscode = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入手机验证码'))
-      } else {
-        callback()
-      }
-    }
-    // <!--验证密码-->
-    let validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'))
-      } else {
-        if (this.ruleForm2.checkPass !== '') {
-          this.$refs.ruleForm2.validateField('checkPass')
-        }
-        callback()
-      }
-    }
-    // <!--二次验证密码-->
-    let validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'))
-      } else if (value !== this.ruleForm2.pass) {
-        callback(new Error('两次输入密码不一致!'))
-      } else {
-        callback()
-      }
-    }
-    return {
-      ruleForm2: {
-        pass: '',
-        checkPass: '',
-        tel: '',
-        smscode: ''
-      },
-      rules2: {
-        pass: [{ validator: validatePass, trigger: 'change' }],
-        checkPass: [{ validator: validatePass2, trigger: 'change' }],
-        tel: [{ validator: checkTel, trigger: 'change' }],
-        smscode: [{ validator: checkSmscode, trigger: 'change' }]
-      },
-      buttonText: '发送验证码',
-      isDisabled: false, // 是否禁止点击发送验证码按钮
-      flag: true
-    }
-  },
   methods: {
-    // <!--发送验证码-->
-    sendCode () {
-      let tel = this.ruleForm2.tel
-      if (this.checkMobile(tel)) {
-        console.log(tel)
-        let time = 60
-        this.buttonText = '已发送'
-        this.isDisabled = true
-        if (this.flag) {
-          this.flag = false
-          let timer = setInterval(() => {
-            time--
-            this.buttonText = time + ' 秒'
-            if (time === 0) {
-              clearInterval(timer)
-              this.buttonText = '重新获取'
-              this.isDisabled = false
-              this.flag = true
-            }
-          }, 1000)
-        }
-      }
-    },
-    // <!--提交注册-->
-    submitForm (formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          setTimeout(() => {
-            alert('注册成功')
-          }, 400)
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
-    // <!--进入登录页-->
     gotoLogin () {
       this.$router.push({
         path: '/login'
       })
-    },
-    // 验证手机号
-    checkMobile (str) {
-      let re = /^1\d{10}$/
-      if (re.test(str)) {
-        return true
-      } else {
-        return false
-      }
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 * {
         margin: 0 auto;
         padding: 0;
     }
-.loading-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: #aedff8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.register-wrapper img {
-  position: absolute;
-  z-index: 1;
-}
-.register-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-}
-#register {
-  max-width: 340px;
-  margin: 60px auto;
-  background: #fff;
-  padding: 20px 40px;
-  border-radius: 10px;
-  position: relative;
-  z-index: 9;
-}
-.title {
-  font-size: 26px;
-  line-height: 50px;
-  font-weight: bold;
-  margin: 10px;
-  text-align: center;
-}
-.el-form-item {
-  text-align: center;
-}
-.login {
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 22px;
-  color: #1ab2ff;
-  cursor: pointer;
-  text-align: left;
-  text-indent: 8px;
-  width: 160px;
-}
-.login:hover {
-  color: #2c2fd6;
-}
-.code >>> .el-form-item__content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.code button {
-  margin-left: 20px;
-  width: 140px;
-  text-align: center;
-}
-.el-button--primary:focus {
-  background: #409EFF;
-  border-color: #409EFF;
-  color: #fff;
-}
+    #wrap {
+        height: 600px;
+        width: 100%;
+        background-position: center center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    #head {
+        height: 120px;
+        width: 100;
+        background-color: #66CCCC;
+        text-align: center;
+        position: relative;
+    }
+    #wrap .logGet {
+        height: 408px;
+        width: 368px;
+        position: absolute;
+        background-color: #FFFFFF;
+        top: 50px;
+    }
+    .logC a button {
+        width: 100%;
+        height: 45px;
+        background-color: #5cadff;
+        border: none;
+        color: white;
+        font-size: 18px;
+    }
+    .logGet .logD.logDtip .p1 {
+        display: inline-block;
+        font-size: 28px;
+        margin-top: 30px;
+        width: 86%;
+    }
+    #wrap .logGet .logD.logDtip {
+        width: 86%;
+        border-bottom: 1px solid #5cadff;
+        margin-bottom: 60px;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .logGet .lgD img {
+        position: absolute;
+        top: 12px;
+        left: 8px;
+    }
+    .logGet .lgD input {
+        width: 100%;
+        height: 42px;
+        text-indent: 2.5rem;
+    }
+    #wrap .logGet .lgD {
+        width: 86%;
+        position: relative;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    #wrap .logGet .logC {
+        width: 86%;
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+    }
+    .title {
+        font-family: "宋体";
+        color: #FFFFFF;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* 使用css3的transform来实现 */
+        font-size: 36px;
+        height: 40px;
+        width: 30%;
+    }
+    .copyright {
+        font-family: "宋体";
+        color: #FFFFFF;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* 使用css3的transform来实现 */
+        height: 60px;
+        width: 40%;
+        text-align: center;
+    }
+    .login {
+        margin-top: 10px;
+        font-size: 14px;
+        line-height: 22px;
+        color: #1ab2ff;
+        cursor: pointer;
+        text-align: center;
+        text-indent: 8px;
+    }
 </style>
