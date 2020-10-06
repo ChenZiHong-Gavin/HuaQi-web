@@ -5,21 +5,29 @@
             <div class="logD logDtip">
                 <p class="p1">欢迎来到Endorse</p>
             </div>
+            <Form ref="formCustom" :model="formCustom" :rules="ruleCustom">
             <!-- 输入框 -->
             <div class="lgD">
+                <FormItem prop="user">
                 <img src="../assets/logos/login.png" width="20" height="20" alt="" />
-                <input type="text" placeholder="请输入你的用户名" />
+                <input type="text" v-model="formCustom.user" placeholder="请输入你的用户名" />
+                 </FormItem>
             </div>
             <div class="lgD">
+                <FormItem prop="passwd">
                 <img src="../assets/logos/password.png" width="20" height="20" alt="" />
-                <input type="text" placeholder="输入你的用户密码" />
+                <input type="password" v-model="formCustom.passwd" placeholder="输入你的用户密码" />
+                </FormItem>
             </div>
             <div class="lgD">
+                <FormItem prop="passwdCheck">
                 <img src="../assets/logos/verify.png" width="20" height="20" alt="" />
-                <input type="text" placeholder="请再次输入密码" />
+                <input type="password" v-model="formCustom.passwdCheck" placeholder="请再次输入密码" />
+                </FormItem>
             </div>
+            </Form>
             <div class="logC">
-                <a><button @click="register">注 册 </button></a>
+                <a><button @click="handleRegister('formCustom')">注 册 </button></a>
             </div>
             <p class="login" @click="gotoLogin">已有账号？立即登录</p>
         </div>
@@ -28,10 +36,59 @@
 
 <script>
 export default {
+  data () {
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入你的密码'))
+      } else {
+        if (this.formCustom.passwdCheck !== '') {
+          // 对第二个密码框单独验证
+          this.$refs.formCustom.validateField('passwdCheck')
+        }
+        callback()
+      }
+    }
+    const validatePassCheck = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再一次输入你的密码'))
+      } else if (value !== this.formCustom.passwd) {
+        callback(new Error('两次密码不一致'))
+      } else {
+        callback()
+      }
+    }
+    return {
+      formCustom: {
+        user: '',
+        passwd: '',
+        passwdCheck: ''
+      },
+      ruleCustom: {
+        user: [
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
+        ],
+        passwd: [
+          { validator: validatePass, trigger: 'blur' }
+        ],
+        passwdCheck: [
+          { validator: validatePassCheck, trigger: 'blur' }
+        ]
+      }
+    }
+  },
   methods: {
     gotoLogin () {
       this.$router.push({
         path: '/login'
+      })
+    },
+    handleRegister (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.$Message.success('Success!')
+        } else {
+          this.$Message.error('Fail!')
+        }
       })
     }
   }
