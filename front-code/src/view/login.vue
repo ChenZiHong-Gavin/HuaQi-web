@@ -6,23 +6,29 @@
                 <p class="p1">欢迎来到Endorse</p>
             </div>
             <!-- 输入框 -->
+          <Form ref="formInline" :model="formInline" :rules="ruleInline">
             <div class="lgD">
+               <FormItem prop="user">
                 <img src="../assets/logos/login.png" width="20" height="20" alt="" />
-                <input type="text" placeholder="输入用户名" />
+                <input type="text" v-model="formInline.user" placeholder="输入用户名" />
+               </FormItem>
             </div>
             <div class="lgD">
+              <FormItem prop="password">
                 <img src="../assets/logos/password.png" width="20" height="20" alt="" />
-                <input type="text" placeholder="输入用户密码" />
+                <input type="password" v-model="formInline.password" placeholder="输入用户密码" />
+              </FormItem>
             </div>
             <div class="lgD">
                 <img src="../assets/logos/verify.png" width="20" height="20" alt="" />
                 <input type="text" placeholder="输入验证码" />
             </div>
+          </Form>
             <div class="login-code" @click="refreshCode">
                 <v-verify ref="verify"/></v-verify>
             </div>
             <div class="logC">
-                <a><button @click="login">登 录</button></a>
+                <a><button @click="handlelogin('formInline')">登 录</button></a>
             </div>
             <p class="register" @click="gotoReg">没有账号？立即注册</p>
         </div>
@@ -32,6 +38,23 @@
 <script>
 import Verify from './verify.vue'
 export default {
+  data () {
+    return {
+      formInline: {
+        user: '',
+        password: ''
+      },
+      ruleInline: {
+        user: [
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' },
+          { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
+        ]
+      }
+    }
+  },
   components: {
     'v-verify': Verify
   },
@@ -44,34 +67,40 @@ export default {
         path: '/register'
       })
     },
-    /**
-  * @description 提交表单
-  */
-    // 提交登录信息
-    submit () {
-      if (this.formLogin.code.toLowerCase() !== this.identifyCode.toLowerCase()) {
-        this.$message.error('请填写正确验证码')
-        this.refreshCode()
-        return
-      }
-      this.$refs.loginForm.validate(valid => {
+    handlelogin (name) {
+      this.$refs[name].validate((valid) => {
         if (valid) {
-          // 登录
-          // 注意 这里的演示没有传验证码
-          // 具体需要传递的数据请自行修改代码
-          // 假设登陆成功，则跳转到 index 组件
-          this.$router.replace('/')
-          this.login({
-            vm: this,
-            username: this.formLogin.username,
-            password: this.formLogin.password
-          })
+          this.$Message.success('Success!')
         } else {
-          // 登录表单校验失败
-          this.$message.error('表单校验失败')
+          this.$Message.error('Fail!')
         }
       })
     }
+    // // 提交登录信息
+    // submit () {
+    //   if (this.formLogin.code.toLowerCase() !== this.identifyCode.toLowerCase()) {
+    //     this.$message.error('请填写正确验证码')
+    //     this.refreshCode()
+    //     return
+    //   }
+    //   this.$refs.loginForm.validate(valid => {
+    //     if (valid) {
+    //       // 登录
+    //       // 注意 这里的演示没有传验证码
+    //       // 具体需要传递的数据请自行修改代码
+    //       // 假设登陆成功，则跳转到 index 组件
+    //       this.$router.replace('/')
+    //       this.login({
+    //         vm: this,
+    //         username: this.formLogin.username,
+    //         password: this.formLogin.password
+    //       })
+    //     } else {
+    //       // 登录表单校验失败
+    //       this.$message.error('表单校验失败')
+    //     }
+    //   })
+    // }
   }
 }
 </script>
