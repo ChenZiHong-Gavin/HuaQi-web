@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { registerReq } from '@/api/user'
 export default {
   data () {
     const validatePass = (rule, value, callback) => {
@@ -43,7 +44,7 @@ export default {
       } else {
         if (this.formCustom.passwordCheck !== '') {
           // 对第二个密码框单独验证
-          this.$refs.formCustom.validateField('passwdCheck')
+          this.$refs.formCustom.validateField('passwordCheck')
         }
         callback()
       }
@@ -86,7 +87,15 @@ export default {
     handleRegister (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
+          registerReq(this.formCustom.username, this.formCustom.password).then(res => {
+            console.log(res)
+            if (res.data.success) {
+              this.$Message.success('注册成功')
+              this.gotoLogin()
+            } else {
+              this.$Message.error('已经存在该用户')
+            }
+          })
         } else {
           this.$Message.error('Fail!')
         }

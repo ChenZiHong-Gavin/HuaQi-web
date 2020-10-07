@@ -8,7 +8,7 @@
             <!-- 输入框 -->
           <Form ref="formInline" :model="formInline" :rules="ruleInline">
             <div class="lgD">
-               <FormItem prop="user">
+               <FormItem prop="username">
                 <img src="../assets/logos/login.png" width="20" height="20" alt="" />
                 <input type="text" v-model="formInline.username" placeholder="输入用户名" />
                </FormItem>
@@ -95,11 +95,12 @@ export default {
         if (valid) {
           // this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面
-          // loginReq的方法写在apis/login.js里面
+          // loginReq的方法写在api/user.js里面
           loginReq(this.formInline.username, this.formInline.password).then((res) => {
             console.log(res)
             // alert('登录成功')
             if (res.data.success) {
+              this.$Message.success('登录成功')
               this.gotoUserPanel()
             } else {
               this.refreshCode()
