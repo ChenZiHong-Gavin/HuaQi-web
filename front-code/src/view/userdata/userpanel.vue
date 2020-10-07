@@ -35,9 +35,18 @@ export default {
 }
 </script>
 <style>
+    * {
+        margin: 0 auto;
+        padding: 0;
+    }
     .demo-split{
-        height: 400px;
-        border: 1px solid #010205;
+        height: 600px;
+        width: 100%;
+        background-position: center center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        top: 50px;
     }
     .demo-split-pane{
         padding: 10px;

@@ -20,7 +20,6 @@
   </router-link>
   <router-view></router-view>
     </Affix>
-    <v-pictures/>
   </div>
 </template>
 

@@ -85,14 +85,22 @@ export default {
         path: '/register'
       })
     },
+    gotoUserPanel () {
+      this.$router.push({
+        path: '/userpanel'
+      })
+    },
     handlelogin (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$Message.success('表单验证成功')
+          // 测试：插入个人页面,应该放在登录成功的后面
+          this.gotoUserPanel()
           // loginreq的方法写在apis/login.js里面
           loginReq(this.formInline.username, this.formInline.password).then((res) => {
             console.log(res)
             alert('远端服务器数据：' + res.isSuccess)
+            alert('登录成功')
           })
         } else {
           // 刷新验证码

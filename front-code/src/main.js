@@ -13,6 +13,8 @@ import Register from './view/register.vue'
 import Fundtrade from './view/panels/fundtrade.vue'
 import Recommendedcombination from './view/panels/recommendedcombination.vue'
 import Aboutfunds from './view/panels/aboutfunds.vue'
+import Userpanel from './view/userdata/Userpanel.vue'
+import Pictures from './view/mainPage/components/pictures.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ViewUI)
@@ -29,7 +31,9 @@ const routes = [
   { path: '/fundtrade', component: Fundtrade },
   { path: '/recommendedcombination', component: Recommendedcombination },
   { path: '/aboutfunds', component: Aboutfunds },
-  { path: '/register', component: Register }
+  { path: '/register', component: Register },
+  { path: '/userpanel', component: Userpanel },
+  { path: '/', component: Pictures }
 ]
 // 创建router实例，然后传routes配置
 const router = new Router({
