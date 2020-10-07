@@ -38,6 +38,8 @@
 </template>
 
 <script>
+// 引入接口
+import { loginReq } from '@/apis/Login'
 import Verify from './verify.vue'
 export default {
   data () {
@@ -86,39 +88,19 @@ export default {
     handlelogin (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
+          this.$Message.success('表单验证成功')
+          // loginreq的方法写在apis/login.js里面
+          loginReq(this.formInline.username, this.formInline.password).then((res) => {
+            console.log(res)
+            alert('远端服务器数据：' + res.isSuccess)
+          })
         } else {
           // 刷新验证码
           this.refreshCode()
-          this.$Message.error('Fail!')
+          this.$Message.error('表单验证失败')
         }
       })
     }
-    // // 提交登录信息
-    // submit () {
-    //   if (this.formLogin.code.toLowerCase() !== this.identifyCode.toLowerCase()) {
-    //     this.$message.error('请填写正确验证码')
-    //     this.refreshCode()
-    //     return
-    //   }
-    //   this.$refs.loginForm.validate(valid => {
-    //     if (valid) {
-    //       // 登录
-    //       // 注意 这里的演示没有传验证码
-    //       // 具体需要传递的数据请自行修改代码
-    //       // 假设登陆成功，则跳转到 index 组件
-    //       this.$router.replace('/')
-    //       this.login({
-    //         vm: this,
-    //         username: this.formLogin.username,
-    //         password: this.formLogin.password
-    //       })
-    //     } else {
-    //       // 登录表单校验失败
-    //       this.$message.error('表单校验失败')
-    //     }
-    //   })
-    // }
   }
 }
 </script>
