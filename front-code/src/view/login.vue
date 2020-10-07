@@ -20,8 +20,10 @@
               </FormItem>
             </div>
             <div class="lgD">
+              <FormItem prop="vcode">
                 <img src="../assets/logos/verify.png" width="20" height="20" alt="" />
-                <input type="text" placeholder="输入验证码" />
+                <input type="text" v-model="formInline.vcode" placeholder="输入验证码" />
+              </FormItem>
             </div>
           </Form>
             <div class="login-code" @click="refreshCode">
@@ -39,10 +41,21 @@
 import Verify from './verify.vue'
 export default {
   data () {
+    const vcodeCheck = (rule, value, callback) => {
+      // value = value.toUpperCase()
+      if (value === '') {
+        callback(new Error('请输入验证码'))
+      } else if (value !== this.$refs.verify.identifyCode) {
+        callback(new Error('请输入正确的验证码'))
+      } else {
+        callback()
+      }
+    }
     return {
       formInline: {
         user: '',
-        password: ''
+        password: '',
+        vcode: ''
       },
       ruleInline: {
         user: [
@@ -51,6 +64,9 @@ export default {
         password: [
           { required: true, message: '密码不能为空', trigger: 'blur' },
           { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
+        ],
+        vcode: [
+          { validator: vcodeCheck, trigger: 'blur' }
         ]
       }
     }
@@ -72,6 +88,8 @@ export default {
         if (valid) {
           this.$Message.success('Success!')
         } else {
+          // 刷新验证码
+          this.refreshCode()
           this.$Message.error('Fail!')
         }
       })

@@ -68,7 +68,8 @@ export default {
           { required: true, message: '用户名不能为空', trigger: 'blur' }
         ],
         passwd: [
-          { validator: validatePass, trigger: 'blur' }
+          { validator: validatePass, trigger: 'blur' },
+          { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
         ],
         passwdCheck: [
           { validator: validatePassCheck, trigger: 'blur' }
