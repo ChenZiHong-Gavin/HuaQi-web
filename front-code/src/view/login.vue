@@ -10,7 +10,7 @@
             <div class="lgD">
                <FormItem prop="user">
                 <img src="../assets/logos/login.png" width="20" height="20" alt="" />
-                <input type="text" v-model="formInline.user" placeholder="输入用户名" />
+                <input type="text" v-model="formInline.username" placeholder="输入用户名" />
                </FormItem>
             </div>
             <div class="lgD">
@@ -27,10 +27,10 @@
             </div>
           </Form>
             <div class="login-code" @click="refreshCode">
-                <v-verify ref="verify"/></v-verify>
+                <v-verify ref="verify"/>
             </div>
             <div class="logC">
-                <a><button @click="handlelogin('formInline')">登 录</button></a>
+                <a><button @click="handleLogin('formInline')">登 录</button></a>
             </div>
             <p class="register" @click="gotoReg">没有账号？立即注册</p>
         </div>
@@ -55,12 +55,12 @@ export default {
     }
     return {
       formInline: {
-        user: '',
+        username: '',
         password: '',
         vcode: ''
       },
       ruleInline: {
-        user: [
+        username: [
           { required: true, message: '用户名不能为空', trigger: 'blur' }
         ],
         password: [
@@ -90,17 +90,19 @@ export default {
         path: '/userpanel'
       })
     },
-    handlelogin (name) {
+    handleLogin (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面
           this.gotoUserPanel()
-          // loginreq的方法写在apis/login.js里面
+          // loginReq的方法写在apis/login.js里面
+          console.log(this.formInline.username)
+          console.log(this.formInline.password)
           loginReq(this.formInline.username, this.formInline.password).then((res) => {
             console.log(res)
-            alert('远端服务器数据：' + res.isSuccess)
-            alert('登录成功')
+            // alert('远端服务器数据：' + res.isSuccess)
+            // alert('登录成功')
           })
         } else {
           // 刷新验证码
@@ -128,7 +130,7 @@ export default {
     }
     #head {
         height: 120px;
-        width: 100;
+        width: 100%;
         background-color: #66CCCC;
         text-align: center;
         position: relative;
