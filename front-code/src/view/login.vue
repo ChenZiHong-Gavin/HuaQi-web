@@ -39,7 +39,7 @@
 
 <script>
 // 引入接口
-import { loginReq } from '@/apis/Login'
+import { loginReq } from '@/api/user'
 import Verify from './verify.vue'
 export default {
   data () {
@@ -93,21 +93,23 @@ export default {
     handleLogin (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('表单验证成功')
+          // this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面
-          this.gotoUserPanel()
           // loginReq的方法写在apis/login.js里面
-          console.log(this.formInline.username)
-          console.log(this.formInline.password)
           loginReq(this.formInline.username, this.formInline.password).then((res) => {
             console.log(res)
-            // alert('远端服务器数据：' + res.isSuccess)
             // alert('登录成功')
+            if (res.data.success) {
+              this.gotoUserPanel()
+            } else {
+              this.refreshCode()
+              this.$Message.error('用户名或密码错误')
+            }
           })
         } else {
           // 刷新验证码
           this.refreshCode()
-          this.$Message.error('表单验证失败')
+          // this.$Message.error('表单验证失败')
         }
       })
     }

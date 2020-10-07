@@ -8,21 +8,21 @@
             <Form ref="formCustom" :model="formCustom" :rules="ruleCustom">
             <!-- 输入框 -->
             <div class="lgD">
-                <FormItem prop="user">
+                <FormItem prop="username">
                 <img src="../assets/logos/login.png" width="20" height="20" alt="" />
-                <input type="text" v-model="formCustom.user" placeholder="请输入你的用户名" />
+                <input type="text" v-model="formCustom.username" placeholder="请输入你的用户名" />
                  </FormItem>
             </div>
             <div class="lgD">
-                <FormItem prop="passwd">
+                <FormItem prop="password">
                 <img src="../assets/logos/password.png" width="20" height="20" alt="" />
-                <input type="password" v-model="formCustom.passwd" placeholder="输入你的用户密码" />
+                <input type="password" v-model="formCustom.password" placeholder="输入你的用户密码" />
                 </FormItem>
             </div>
             <div class="lgD">
-                <FormItem prop="passwdCheck">
+                <FormItem prop="passwordCheck">
                 <img src="../assets/logos/verify.png" width="20" height="20" alt="" />
-                <input type="password" v-model="formCustom.passwdCheck" placeholder="请再次输入密码" />
+                <input type="password" v-model="formCustom.passwordCheck" placeholder="请再次输入密码" />
                 </FormItem>
             </div>
             </Form>
@@ -41,7 +41,7 @@ export default {
       if (value === '') {
         callback(new Error('请输入你的密码'))
       } else {
-        if (this.formCustom.passwdCheck !== '') {
+        if (this.formCustom.passwordCheck !== '') {
           // 对第二个密码框单独验证
           this.$refs.formCustom.validateField('passwdCheck')
         }
@@ -51,7 +51,7 @@ export default {
     const validatePassCheck = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再一次输入你的密码'))
-      } else if (value !== this.formCustom.passwd) {
+      } else if (value !== this.formCustom.password) {
         callback(new Error('两次密码不一致'))
       } else {
         callback()
@@ -59,19 +59,19 @@ export default {
     }
     return {
       formCustom: {
-        user: '',
-        passwd: '',
-        passwdCheck: ''
+        username: '',
+        password: '',
+        passwordCheck: ''
       },
       ruleCustom: {
-        user: [
+        username: [
           { required: true, message: '用户名不能为空', trigger: 'blur' }
         ],
-        passwd: [
+        password: [
           { validator: validatePass, trigger: 'blur' },
           { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
         ],
-        passwdCheck: [
+        passwordCheck: [
           { validator: validatePassCheck, trigger: 'blur' }
         ]
       }
@@ -111,7 +111,7 @@ export default {
     }
     #head {
         height: 120px;
-        width: 100;
+        width: 100%;
         background-color: #66CCCC;
         text-align: center;
         position: relative;

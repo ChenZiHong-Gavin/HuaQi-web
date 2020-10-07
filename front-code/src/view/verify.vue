@@ -83,8 +83,7 @@ export default{
     },
     // 重置验证码
     refreshCode () {
-      this.identifyCode = ''
-      this.makeCode('1234567890abcdefjhijklinopqrsduvwxyz', 4)
+      this.drawPic()
     },
     makeCode (o, l) {
       for (let i = 0; i < l; i++) {
@@ -92,11 +91,7 @@ export default{
       }
     }
   },
-  // watch: {
-  //   identifyCode () {
-  //     this.drawPic()
-  //   }
-  // },
+
   mounted () {
     // 初始化验证码
     // this.identifyCode = ''

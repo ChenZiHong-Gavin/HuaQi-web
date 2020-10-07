@@ -6,11 +6,7 @@ import axios from 'axios'
 // import Qs from 'Qs'
 const service = axios.create({
   baseURL: 'http://localhost:8080',
-  timeout: 1000,
-  headers: {'Content-Type': 'application/json'}
-  // transformRequest: [function (data) {
-  //   // 对 data 进行任意转换处理
-  //   return Qs.stringify(data)
-  // }]
+  timeout: 1000
+  //  headers: {'Content-Type': 'application/json'}
 })
 export default service
