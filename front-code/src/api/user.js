@@ -30,5 +30,5 @@ export function surveyReq (username, password, riskAssessmentIndex, stopProfit, 
 }
 
 export function showUserReq (id) {
-  return request.get('/showUser/{}')
+  return request.get('/showUser/' + id)
 }

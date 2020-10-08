@@ -30,7 +30,7 @@
                 <v-verify ref="verify"/>
             </div>
             <div class="logC">
-                <a><button @click="handleLogin('formInline')" @keyup.enter="handleLogin('formInLine')">登 录</button></a>
+                <a><button @click="handleLogin('formInline')" @keyup.enter="handleLogin('formInline')">登 录</button></a>
             </div>
             <p class="register" @click="gotoReg">没有账号？立即注册</p>
         </div>
