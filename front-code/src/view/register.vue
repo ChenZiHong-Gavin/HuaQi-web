@@ -27,7 +27,7 @@
             </div>
             </Form>
             <div class="logC">
-                <a><button @click="handleRegister('formCustom')">注 册 </button></a>
+                <a><button @click="handleRegister('formCustom')" @keyup.enter="handleRegister('formCustom')">注 册 </button></a>
             </div>
             <p class="login" @click="gotoLogin">已有账号？立即登录</p>
         </div>
