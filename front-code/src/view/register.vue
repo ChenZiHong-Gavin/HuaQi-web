@@ -5,7 +5,7 @@
             <div class="logD logDtip">
                 <p class="p1">欢迎来到Endorse</p>
             </div>
-            <Form ref="formCustom" :model="formCustom" :rules="ruleCustom">
+            <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" @keyup.enter="handleRegister('formCustom')">
             <!-- 输入框 -->
             <div class="lgD">
                 <FormItem prop="username">
@@ -27,7 +27,7 @@
             </div>
             </Form>
             <div class="logC">
-                <a><button @click="handleRegister('formCustom')" @keyup.enter="handleRegister('formCustom')">注 册 </button></a>
+                <a><button @click="handleRegister('formCustom')">注 册 </button></a>
             </div>
             <p class="login" @click="gotoLogin">已有账号？立即登录</p>
         </div>
