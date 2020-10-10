@@ -17,6 +17,7 @@ import Userpanel from './view/userdata/Userpanel.vue'
 import Pictures from './view/mainPage/components/pictures.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+
 Vue.use(ViewUI)
 Vue.use(ElementUI)
 Vue.use(Router)

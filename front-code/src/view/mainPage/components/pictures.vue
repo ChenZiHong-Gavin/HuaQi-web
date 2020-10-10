@@ -1,4 +1,5 @@
 <template>
+<div class="light">
   <div id="pictures">
    <el-carousel :interval="5000" arrow="always">
     <el-carousel-item v-for="(img,index) in imgList" :key="index">
@@ -6,6 +7,7 @@
     </el-carousel-item>
     </el-carousel>
   </div>
+</div>
 </template>
 
 <script>
@@ -29,10 +31,13 @@ export default {
         margin: 0 auto;
         padding: 0;
     }
+    #light {
+      text-align: center;
+    }
     #pictures {
         width: 100%;
-        justify-content: center;
         position: absolute;
+        justify-content: center;    /*水平居中*/
         top: 100px;
     }
   .el-carousel__item h3 {

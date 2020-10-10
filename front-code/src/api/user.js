@@ -15,5 +15,5 @@ export function loginReq (username, password) {
 }
 
 export function showUserReq (id) {
-  return request.get('/showUser/{}')
+  return request.get('/showUser/{' + id + '}')
 }

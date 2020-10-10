@@ -57,7 +57,8 @@ export default {
       formInline: {
         username: '',
         password: '',
-        vcode: ''
+        vcode: '',
+        id: ''
       },
       ruleInline: {
         username: [
@@ -87,7 +88,12 @@ export default {
     },
     gotoUserPanel () {
       this.$router.push({
-        path: '/userpanel'
+        path: '/userpanel',
+        query: {
+          // 用query方式向下一个组件传递数据
+          id: this.formInline.id
+        }
+
       })
     },
     handleLogin (name) {
@@ -96,11 +102,14 @@ export default {
           // this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面
           // loginReq的方法写在api/user.js里面
+          this.gotoUserPanel()
           loginReq(this.formInline.username, this.formInline.password).then((res) => {
             console.log(res)
             // alert('登录成功')
             if (res.data.success) {
               this.$Message.success('登录成功')
+              // 获取对象的id
+              this.formInline.id = res.data.id
               this.gotoUserPanel()
             } else {
               this.refreshCode()
