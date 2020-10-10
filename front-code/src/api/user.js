@@ -14,6 +14,21 @@ export function loginReq (username, password) {
   })
 }
 
+export function surveyReq (username, password, riskAssessmentIndex, stopProfit, stopLoss,
+  plannedInvestmentCycle, plannedTotalInvestmentAccount,
+  plannedInvestmentIncome) {
+  return request.post('/survey', {
+    username: username,
+    password: password,
+    riskAssessmentIndex: riskAssessmentIndex,
+    stopProfit: stopProfit,
+    stopLoss: stopLoss,
+    plannedInvestmentCycle: plannedInvestmentCycle,
+    plannedTotalInvestmentAccount: plannedTotalInvestmentAccount,
+    plannedInvestmentIncome: plannedInvestmentIncome
+  })
+}
+
 export function showUserReq (id) {
-  return request.get('/showUser/{' + id + '}')
+  return request.get('/showUser/' + id)
 }

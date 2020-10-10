@@ -6,7 +6,7 @@
                 <p class="p1">欢迎来到Endorse</p>
             </div>
             <!-- 输入框 -->
-          <Form ref="formInline" :model="formInline" :rules="ruleInline">
+          <Form ref="formInline" :model="formInline" :rules="ruleInline" @keyup.native.enter="handleLogin('formInline')">
             <div class="lgD">
                <FormItem prop="username">
                 <img src="../assets/logos/login.png" width="20" height="20" alt="" />
@@ -30,7 +30,7 @@
                 <v-verify ref="verify"/>
             </div>
             <div class="logC">
-                <a><button @click="handleLogin('formInline')">登 录</button></a>
+                <a><button @click="handleLogin('formInline')" >登 录</button></a>
             </div>
             <p class="register" @click="gotoReg">没有账号？立即注册</p>
         </div>
