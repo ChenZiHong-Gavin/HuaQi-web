@@ -41,6 +41,7 @@
 // 引入接口
 import { loginReq } from '@/api/user'
 import Verify from './verify.vue'
+import globalDefault from '../Global'
 export default {
   data () {
     const vcodeCheck = (rule, value, callback) => {
@@ -102,14 +103,15 @@ export default {
           // this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面
           // loginReq的方法写在api/user.js里面
-          this.gotoUserPanel()
           loginReq(this.formInline.username, this.formInline.password).then((res) => {
-            console.log(res)
+            // console.log(res)
             // alert('登录成功')
             if (res.data.success) {
+              globalDefault.user.id = res.data.data.id
+              globalDefault.user.username = res.data.data.username
+              globalDefault.user.password = res.data.data.password
+              // console.log(globalDefault.user)
               this.$Message.success('登录成功')
-              // 获取对象的id
-              this.formInline.id = res.data.id
               this.gotoUserPanel()
             } else {
               this.refreshCode()
