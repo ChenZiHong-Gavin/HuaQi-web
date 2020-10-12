@@ -18,11 +18,11 @@
   <router-link to="/login">
    <Button type="primary">登录</Button>
   </router-link>
-  <router-link to="/test">
+    </Affix>
+  <router-link to="/testpage">
    <Button type="primary">开始测试</button>
   </router-link>
   <router-view></router-view>
-    </Affix>
   </div>
 </template>
 

@@ -118,7 +118,7 @@ export default {
     show (index) {
       this.$Modal.info({
         title: 'User Info',
-        content: 'none'
+        content: ''
       })
     },
     remove (index) {
