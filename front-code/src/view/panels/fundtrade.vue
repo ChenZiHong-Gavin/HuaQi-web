@@ -27,7 +27,15 @@
 <template>
     <div class="fundtrade">
     <p>基金走势板块</p>
-    <Table :columns="columns1" :data="data8"></Table>
+    <Table border :columns="columns1" :data="data8">
+      <template slot-scope="{ row }" slot="name">
+            <strong>{{ row.name }}</strong>
+        </template>
+        <template slot-scope="{ row, index }" slot="action">
+            <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>
+            <Button type="error" size="small" @click="remove(index)">Delete</Button>
+        </template>
+    </Table>
     </div>
 </template>
 <script>
@@ -54,6 +62,13 @@ export default {
           // 近一周收入
           title: '近一周收入',
           key: 'profit'
+        },
+        {
+          // action
+          title: '操作',
+          slot: 'action',
+          width: 150,
+          align: 'center'
         }
       ],
       data8: [
@@ -99,7 +114,17 @@ export default {
         return 'demo-table-error-row'
       }
       return ''
+    },
+    show (index) {
+      this.$Modal.info({
+        title: 'User Info',
+        content: 'none'
+      })
+    },
+    remove (index) {
+      this.data6.splice(index, 1)
     }
   }
 }
+
 </script>
