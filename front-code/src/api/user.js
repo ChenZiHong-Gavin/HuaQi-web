@@ -14,18 +14,15 @@ export function loginReq (username, password) {
   })
 }
 
-export function surveyReq (username, password, riskAssessmentIndex, stopProfit, stopLoss,
-  plannedInvestmentCycle, plannedTotalInvestmentAccount,
-  plannedInvestmentIncome) {
+export function surveyReq (username, password, subjectiveRiskPreference,
+  plannedInvestmentCycle, plannedTotalInvestmentAccount, objectiveInvestmentStrength) {
   return request.post('/survey', {
     username: username,
     password: password,
-    riskAssessmentIndex: riskAssessmentIndex,
-    stopProfit: stopProfit,
-    stopLoss: stopLoss,
+    subjectiveRiskPreference: subjectiveRiskPreference,
+    objectiveInvestmentStrength: objectiveInvestmentStrength,
     plannedInvestmentCycle: plannedInvestmentCycle,
-    plannedTotalInvestmentAccount: plannedTotalInvestmentAccount,
-    plannedInvestmentIncome: plannedInvestmentIncome
+    plannedTotalInvestmentAccount: plannedTotalInvestmentAccount
   })
 }
 
