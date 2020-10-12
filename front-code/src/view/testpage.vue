@@ -3,18 +3,18 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">1.您的预期投资金额是（单位：元）</p>
-            <Input v-model="value1" clearable style="width: 200px" />
+            <Input v-model="content.value1" clearable style="width: 200px" />
         </Card>
          <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">2.您的预期投资期限是（单位：年）</p>
-            <Input v-model="value2" clearable style="width: 200px" />
+            <Input v-model="content.value2" clearable style="width: 200px" />
         </Card>
     </div>
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">3.您的家庭年可支配收入约为：</p>
-        <RadioGroup v-model="value3" vertical>
+        <RadioGroup v-model="content.value3" vertical>
         <Radio label="value3_1">
         <span>a.15万元以下</span>
         </Radio>
@@ -36,7 +36,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">4.您的家庭总资产约为</p>
-        <RadioGroup v-model="value4" vertical>
+        <RadioGroup v-model="content.value4" vertical>
         <Radio label="value4_1">
         <span>a.0-200万</span>
         </Radio>
@@ -58,7 +58,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">5.您的投资经历为？</p>
-        <RadioGroup v-model="value5" vertical>
+        <RadioGroup v-model="content.value5" vertical>
         <Radio label="value5_1">
         <span>a.无</span>
         </Radio>
@@ -77,7 +77,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
         <p slot="title">6.您的家庭负债率约为？</p>
-        <RadioGroup v-model="value6" vertical>
+        <RadioGroup v-model="content.value6" vertical>
         <Radio label="value6_1">
         <span>a.0-15%</span>
         </Radio>
@@ -96,7 +96,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">7.您的职业是？</p>
-            <RadioGroup v-model="value7" vertical>
+            <RadioGroup v-model="content.value7" vertical>
         <Radio label="value7_1">
         <span>a.公务员、事业单位职员、国有企业职员等收入来源稳定的工作</span>
         </Radio>
@@ -115,7 +115,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">8.您是否系统地学习过一些专业的投资理论？</p>
-        <RadioGroup v-model="value8" vertical>
+        <RadioGroup v-model="content.value8" vertical>
         <Radio label="value8_1">
         <span>是</span>
         </Radio>
@@ -128,7 +128,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
         <p slot="title">9.您的年龄大约是？</p>
-        <RadioGroup v-model="value9" vertical>
+        <RadioGroup v-model="content.value9" vertical>
         <Radio label="value9_1">
         <span>a.小于等于30岁</span>
         </Radio>
@@ -147,7 +147,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
         <p slot="title">10.当你的亏损率达到10%-15%时，你的心理状态可能是：</p>
-        <RadioGroup v-model="value10" vertical>
+        <RadioGroup v-model="content.value10" vertical>
         <Radio label="value10_1">
         <span>a.夜不能寐，十分纠结</span>
         </Radio>
@@ -166,7 +166,7 @@
      <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
         <p slot="title">11.可承受的最大亏损:</p>
-        <RadioGroup v-model="value11" vertical>
+        <RadioGroup v-model="content.value11" vertical>
         <Radio label="value11_1">
         <span>a.不愿承受亏损</span>
         </Radio>
@@ -185,7 +185,7 @@
          <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
         <p slot="title">12.您的理财投资目标为：</p>
-        <RadioGroup v-model="value12" vertical>
+        <RadioGroup v-model="content.value12" vertical>
         <Radio label="value12_1">
         <span>a.在保证资产安全性的基础上获得固定收益</span>
         </Radio>
@@ -204,7 +204,7 @@
          <div style="background:#eee;padding: 20px">
         <Card :bordered="false">
             <p slot="title">13.您当前主要投资工具？</p>
-        <RadioGroup v-model="value13" vertical>
+        <RadioGroup v-model="content.value13" vertical>
         <Radio label="value13_1">
         <span>a.存款、国债</span>
         </Radio>
@@ -219,7 +219,7 @@
         </Radio>
         </RadioGroup>
         </Card>
-        <Button type="success" long>SUBMIT</Button>
+        <Button type="success" @click="handleSubmit(content)" long>SUBMIT</Button>
     </div>
     </div>
   </div>
@@ -228,6 +228,26 @@
 export default {
   data () {
     return {
+      content: {
+        value1: '',
+        value2: '',
+        value3: '',
+        value4: '',
+        value5: '',
+        value6: '',
+        value7: '',
+        value8: '',
+        value9: '',
+        value10: '',
+        value11: '',
+        value12: '',
+        value13: ''
+      }
+    }
+  },
+  methods: {
+    handleSubmit (content) {
+      console.log(content)
     }
   }
 }
