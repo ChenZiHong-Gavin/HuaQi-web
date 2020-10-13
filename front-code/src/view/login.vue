@@ -108,6 +108,7 @@ export default {
             // console.log(res)
             // alert('登录成功')
             if (res.data.success) {
+              this.formInline.id = res.data.data.id
               globalDefault.user.id = res.data.data.id
               globalDefault.user.username = res.data.data.username
               globalDefault.user.password = res.data.data.password
