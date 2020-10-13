@@ -253,11 +253,12 @@ export default {
         this.$Message.error('请检查是否填写完整')
       } else {
         console.log(this.content)
-        globalDefault.user.subjectiveRiskPreference = 0.05 * this.content.value9 + 0.15 * this.content.value10 + 0.3 * this.content.value11 + 0.3 * this.content.value12 + 0.2 * this.content.value13
-        globalDefault.user.plannedInvestmentCycle = 12 * this.content.value2
-        globalDefault.user.plannedTotalInvestmentAccount = this.content.value1
-        let economicStrength = 1 - (this.content.value1 / (10000 * this.content.value4 * (1 - this.content.value6)) + 3 * this.content.value3)
-        globalDefault.user.objectiveInvestmentPreference = economicStrength * (this.content.value5 + this.content.value7 + this.content.value8)
+        globalDefault.user.subjectiveRiskPreference = 0.05 * parseFloat(this.content.value9) + 0.15 * parseFloat(this.content.value10) + 0.3 * parseFloat(this.content.value11) + 0.3 * parseFloat(this.content.value12) + 0.2 * parseFloat(this.content.value13)
+        globalDefault.user.plannedInvestmentCycle = Math.round(12 * parseFloat(this.content.value2))
+        globalDefault.user.plannedTotalInvestmentAccount = parseInt(this.content.value1)
+        let economicStrength = 1 - (parseFloat(this.content.value1) / (parseFloat(this.content.value4) * (1 - parseFloat(this.content.value6)) * 10000 + 3 * parseFloat(this.content.value3) * 10000))
+        console.log(economicStrength)
+        globalDefault.user.objectiveInvestmentPreference = economicStrength * (parseFloat(this.content.value5) + parseFloat(this.content.value7) + parseFloat(this.content.value8))
         console.log(globalDefault.user)
         surveyReq(globalDefault.user.username, globalDefault.user.password, globalDefault.user.subjectiveRiskPreference,
           globalDefault.user.objectiveInvestmentPreference, globalDefault.user.plannedInvestmentCycle, globalDefault.user.plannedTotalInvestmentAccount)
