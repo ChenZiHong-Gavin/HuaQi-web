@@ -10,7 +10,7 @@
             <p>昵称：{{username}}</p>
              </Card>
              <Card style="width:30%">
-            <p>我的测评</p>
+            <p  @click="gotoTestpage">我的测评</p>
             </Card>
              <Card style="width:30%">
             <p>我的投资组合</p>
@@ -39,6 +39,11 @@ export default {
     this.http(this.userId)
   },
   methods: {
+    gotoTestpage () {
+      this.$router.push({
+        path: '/testpage'
+      })
+    },
     getParams () {
       // 通过全局变量获取用户和其id
       this.userId = globalDefault.user.id

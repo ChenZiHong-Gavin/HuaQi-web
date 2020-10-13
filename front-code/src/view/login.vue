@@ -100,6 +100,7 @@ export default {
     handleLogin (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
+          this.gotoUserPanel()
           // this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面
           // loginReq的方法写在api/user.js里面

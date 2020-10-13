@@ -19,7 +19,7 @@
    <Button type="primary">登录</Button>
   </router-link>
     </Affix>
-  <router-link to="/testpage">
+  <router-link to="/">
    <Button type="primary">开始测试</button>
   </router-link>
   <router-view></router-view>
