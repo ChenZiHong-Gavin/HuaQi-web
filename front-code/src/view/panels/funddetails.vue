@@ -40,7 +40,7 @@
                 </Card>
             </div>
         </Split>
-            </div>
+      </div>
     </div>
 </template>
 <script>
