@@ -1,7 +1,3 @@
-//综上所述，使用创建好的组件的步骤为：
-//1、import引入组件
-//2、在components中挂载组建
-//3、在template模板中使用组件
 <template>
   <div id="app">
   <!-- 图钉功能，让组件一直在页面最上方 -->
@@ -19,26 +15,21 @@
    <Button type="primary">登录</Button>
   </router-link>
     </Affix>
-  <router-link to="/">
+  <!-- <router-link to="/">
    <Button type="primary">开始测试</button>
-  </router-link>
+  </router-link> -->
   <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Pictures from './view/mainPage/components/pictures.vue'
 export default {
   name: 'App',
   data () {
     return {
       buttonSize: 'large'
     }
-  },
-  components: {
-    'v-pictures': Pictures
   }
-
 }
 </script>
 

@@ -1,16 +1,16 @@
 <template>
-    <div class="demo-split">
+    <div class="page-split">
     <div class="goBack">
     <el-page-header @back="goBack" content="详情页面">
     </el-page-header>
     </div>
-            <div slot="top" class="demo-split-pane">
+            <div slot="top" class="page-split-pane">
                 <p>这里画折线图</p>
                 <v-chart></v-chart>
             </div>
-            <div slot="bottom" class="demo-split-pane">
+            <div slot="bottom" class="page-split-pane">
                 <Split v-model="split1">
-            <div slot="left" class="demo-split-pane">
+            <div slot="left" class="page-split-pane">
                 <Tabs name="tab" value="a">
                     <TabPane label="历史业绩" name="a" tab="tab">
                         <!-- <Tabs name="tab-2a" value="2a1">
@@ -28,7 +28,7 @@
                     </TabPane>
                 </Tabs>
             </div>
-            <div slot="right" class="demo-split-pane">
+            <div slot="right" class="page-split-pane">
                 <Card :bordered="false">
                 <p>基金档案</p>
                 </Card>
@@ -76,11 +76,11 @@ export default {
 }
 </script>
 <style>
-    .demo-split{
+    .page-split{
         height: 400px;
         border: 1px solid #dcdee2;
     }
-    .demo-split-pane{
+    .page-split-pane{
         padding: 10px;
     }
 </style>

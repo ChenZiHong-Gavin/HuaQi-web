@@ -1,4 +1,5 @@
 <template>
+<!-- 走马灯组件 -->
 <div class="light">
   <div id="pictures">
    <el-carousel :interval="5000" arrow="always">
