@@ -26,14 +26,13 @@
 </style>
 <template>
     <div class="fundtrade">
-    <p>基金走势板块</p>
+    <p>优选基金</p>
     <Table border :columns="columns1" :data="data8">
       <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
         </template>
         <template slot-scope="{ row, index }" slot="action">
             <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>
-            <Button type="error" size="small" @click="remove(index)">Delete</Button>
         </template>
     </Table>
     </div>
@@ -116,13 +115,18 @@ export default {
       return ''
     },
     show (index) {
-      this.$Modal.info({
-        title: 'User Info',
-        content: ''
+      // 这里调用的方法根据index区别
+      // this.$Modal.info({
+      //   title: 'User Info',
+      //   content: ''
+      // })
+      this.$router.push({
+        path: '/funddetails',
+        query: {
+          // 用query方式向下一个组件传递数据
+          index: index
+        }
       })
-    },
-    remove (index) {
-      this.data6.splice(index, 1)
     }
   }
 }

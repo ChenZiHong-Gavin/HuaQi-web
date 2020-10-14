@@ -16,6 +16,7 @@ import Aboutfunds from './view/panels/aboutfunds.vue'
 import Userpanel from './view/userdata/Userpanel.vue'
 import Pictures from './view/mainPage/components/pictures.vue'
 import Testpage from './view/testpage.vue'
+import Funddetails from './view/panels/funddetails.vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -36,7 +37,8 @@ const routes = [
   { path: '/register', component: Register },
   { path: '/userpanel', component: Userpanel },
   { path: '/', component: Pictures },
-  { path: '/testpage', component: Testpage }
+  { path: '/testpage', component: Testpage },
+  { path: '/funddetails', component: Funddetails }
 ]
 // 创建router实例，然后传routes配置
 const router = new Router({
