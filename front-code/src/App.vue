@@ -14,6 +14,9 @@
   <router-link to="/login">
    <Button type="primary" v-if="!showname">登录</Button>
   </router-link>
+  <router-link to="/userpanel">
+  <Avatar icon="ios-person" size="large" v-if="showname"/>
+  </router-link>
     </Affix>
   <!-- <router-link to="/">
    <Button type="primary">开始测试</button>
