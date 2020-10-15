@@ -100,6 +100,8 @@ export default {
     handleLogin (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
+          // showname用于登录后隐藏登录按钮
+          this.$parent.$data.showname = true
           this.gotoUserPanel()
           // this.$Message.success('表单验证成功')
           // 测试：插入个人页面,应该放在登录成功的后面

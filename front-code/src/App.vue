@@ -12,7 +12,7 @@
     <Button :size="buttonSize" shape="circle" icon="logo-usd" > 关 于 基 金 </Button>
   </router-link>
   <router-link to="/login">
-   <Button type="primary">登录</Button>
+   <Button type="primary" v-if="!showname">登录</Button>
   </router-link>
     </Affix>
   <!-- <router-link to="/">
@@ -27,7 +27,8 @@ export default {
   name: 'App',
   data () {
     return {
-      buttonSize: 'large'
+      buttonSize: 'large',
+      showname: false
     }
   }
 }
