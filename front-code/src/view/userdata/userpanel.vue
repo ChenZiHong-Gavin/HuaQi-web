@@ -15,6 +15,9 @@
              <Card style="width:30%">
             <p>我的投资组合</p>
              </Card>
+              <Card style="width:30%">
+            <p @click="gotoIndex">退出登录</p>
+             </Card>
         </div>
     </Card>
     </div>
@@ -43,6 +46,12 @@ export default {
       this.$router.push({
         path: '/testpage'
       })
+    },
+    gotoIndex () {
+      this.$router.push({
+        path: '/'
+      })
+      this.$router.go(0)
     },
     getParams () {
       // 通过全局变量获取用户和其id

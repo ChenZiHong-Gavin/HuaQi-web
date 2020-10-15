@@ -1,5 +1,6 @@
 <template>
   <div class="tabBox">
+    <h1>Hi 欢迎来到基金的世界</h1>
     <el-tabs :tab-position="tabPosition" style="height: 100%;">
       <el-tab-pane label="导航栏">Hi 欢迎来到基金的世界</el-tab-pane>
       <el-tab-pane label="基金科普">基金科普</el-tab-pane>

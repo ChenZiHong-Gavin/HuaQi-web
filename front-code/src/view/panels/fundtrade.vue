@@ -26,7 +26,7 @@
 </style>
 <template>
     <div class="fundtrade">
-    <p>优选基金</p>
+    <h1>优选基金</h1>
     <Table border :columns="columns1" :data="data8">
       <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
