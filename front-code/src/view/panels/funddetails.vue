@@ -45,6 +45,7 @@
 </template>
 <script>
 import Chart from './chart.vue'
+import { showFundReq } from '../../api/fund'
 export default {
   watch: {
     '$route': 'getParams'
@@ -56,17 +57,20 @@ export default {
     return {
       split1: 0.5,
       split2: 0.5,
-      index: ''
+      index: '',
+      fundCode: '',
+      detail: {}
     }
   },
   mounted () {
-    this.getParams()
+    this.fundCode = this.$route.query.fundCode
+    showFundReq(this.fundCode).then((res) => {
+      // console.log(this.detail)
+      this.detail = res.data.data
+      // console.log(this.detail)
+    })
   },
   methods: {
-    getParams () {
-      // 用index区别
-      this.index = this.$route.query.index
-    },
     goBack () {
       this.$router.push({
         path: '/fundtrade'

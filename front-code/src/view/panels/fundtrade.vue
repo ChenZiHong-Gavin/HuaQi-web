@@ -38,6 +38,7 @@
     </div>
 </template>
 <script>
+import { showFundListReq } from '../../api/fund'
 export default {
   data () {
     return {
@@ -102,7 +103,8 @@ export default {
             name: 'demo-table-info-cell-name'
           }
         }
-      ]
+      ],
+      fundCodes: []
     }
   },
   methods: {
@@ -124,10 +126,19 @@ export default {
         path: '/funddetails',
         query: {
           // 用query方式向下一个组件传递数据
-          index: index
+          fundCode: this.fundCodes[index]
         }
       })
     }
+  },
+  mounted () {
+    showFundListReq().then((res) => {
+      console.log(res)
+      for (let i = 0; i < res.data.data.length; i++) {
+        this.fundCodes.push(res.data.data[i].first.fundCode)
+      }
+      console.log(this.fundCodes)
+    })
   }
 }
 
