@@ -5,7 +5,7 @@
             <div class="logD logDtip">
                 <p class="p1">欢迎来到Endorse</p>
             </div>
-            <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" @keyup.enter="handleRegister('formCustom')">
+            <Form ref="formCustom" :model="formCustom" :rules="ruleCustom" @keyup.native.enter="handleRegister('formCustom')">
             <!-- 输入框 -->
             <div class="lgD">
                 <FormItem prop="username">
