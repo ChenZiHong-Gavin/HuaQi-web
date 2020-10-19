@@ -13,11 +13,7 @@
             <div slot="left" class="page-split-pane">
                 <Tabs name="tab" value="a">
                     <TabPane label="历史业绩" name="a" tab="tab">
-                        <!-- <Tabs name="tab-2a" value="2a1">
-                            <TabPane label="三个月" name="2a1" tab="tab-2a">三个月的内容</TabPane>
-                            <TabPane label="近一年" name="2a1" tab="tab-2a">近一年的内容</TabPane>
-                            <TabPane label="成立以来" name="2a1" tab="tab-2a">成立以来的内容</TabPane>
-                        </Tabs> -->
+                    <Table :columns="columns1" :data="data1"></Table>
                     </TabPane>
                     <TabPane label="历史净值" name="b" tab="tab">
                         <!-- <Tabs name="tab-2b" value="2b1">
@@ -30,10 +26,10 @@
             </div>
             <div slot="right" class="page-split-pane">
                 <Card :bordered="false">
-                <p>基金档案</p>
+                <p>基金档案{{what}}</p>
                 </Card>
                 <Card :bordered="false">
-                <p>基金经理</p>
+                <p>基金经理{{manager}}</p>
                 </Card>
                 <Card :bordered="false">
                 <p>投资分布</p>
@@ -59,7 +55,35 @@ export default {
       split2: 0.5,
       index: '',
       fundCode: '',
-      detail: {}
+      detail: {},
+      columns1: [
+        {
+          title: '时间区间',
+          key: 'time'
+        },
+        {
+          title: '涨跌幅',
+          key: 'rate'
+        },
+        {
+          title: '同类业绩排名',
+          key: 'rank'
+        }
+      ],
+      data1: [
+        {
+          time: '近一周'
+        },
+        {
+          time: '近1月'
+        },
+        {
+          time: '近3月'
+        },
+        {
+          time: '近1年'
+        }
+      ]
     }
   },
   mounted () {
