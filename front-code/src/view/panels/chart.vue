@@ -22,7 +22,7 @@ export default {
           trigger: 'axis'
         },
         legend: {
-          data: ['近七日收益']
+          data: ['增长情况']
         },
         grid: {
           left: '3%',
@@ -47,7 +47,7 @@ export default {
         },
 
         series: [{
-          name: '近七日收益',
+          name: '增长情况',
           type: 'line',
           stack: '总量',
           data: this.opinionData

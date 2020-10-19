@@ -26,13 +26,13 @@
             </div>
             <div slot="right" class="page-split-pane">
                 <Card :bordered="false">
-                <p>基金档案{{what}}</p>
+                <p>基金档案{{file}}</p>
                 </Card>
                 <Card :bordered="false">
                 <p>基金经理{{manager}}</p>
                 </Card>
                 <Card :bordered="false">
-                <p>投资分布</p>
+                <p>投资分布{{distribution}}</p>
                 </Card>
             </div>
         </Split>
@@ -53,6 +53,12 @@ export default {
     return {
       split1: 0.5,
       split2: 0.5,
+      // 基金档案
+      file: '',
+      // 基金经理
+      manager: '',
+      // 投资分布
+      distribution: '',
       index: '',
       fundCode: '',
       detail: {},
@@ -72,16 +78,25 @@ export default {
       ],
       data1: [
         {
-          time: '近一周'
+          time: '近一周',
+          // this.detail.
+          rate: '',
+          rank: ''
         },
         {
-          time: '近1月'
+          time: '近1月',
+          rate: '',
+          rank: ''
         },
         {
-          time: '近3月'
+          time: '近3月',
+          rate: '',
+          rank: ''
         },
         {
-          time: '近1年'
+          time: '近1年',
+          rate: '',
+          rank: ''
         }
       ]
     }
