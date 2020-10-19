@@ -72,16 +72,6 @@ export default {
         }
       ],
       data8: [
-        {
-        // 基金名称
-          name: '测试',
-          // 单位净值
-          value: '测试',
-          // 日涨跌幅
-          change: '测试',
-          // 近一周收益
-          profit: '测试'
-        }
       ],
       fundCodes: []
     }

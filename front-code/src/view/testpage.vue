@@ -277,9 +277,9 @@ export default {
         globalDefault.user.plannedInvestmentCycle = Math.round(12 * parseFloat(this.content.value2))
         globalDefault.user.plannedTotalInvestmentAccount = parseInt(this.content.value1)
         let economicStrength = 1 - (parseFloat(this.content.value1) / (parseFloat(this.content.value4) * (1 - parseFloat(this.content.value6)) * 10000 + 3 * parseFloat(this.content.value3) * 10000))
-        console.log(economicStrength)
+        // console.log(economicStrength)
         globalDefault.user.objectiveInvestmentPreference = economicStrength * (parseFloat(this.content.value5) + parseFloat(this.content.value7) + parseFloat(this.content.value8))
-        console.log(globalDefault.user)
+        // console.log(globalDefault.user)
         surveyReq(globalDefault.user.username, globalDefault.user.password, globalDefault.user.subjectiveRiskPreference,
           globalDefault.user.objectiveInvestmentPreference, globalDefault.user.plannedInvestmentCycle, globalDefault.user.plannedTotalInvestmentAccount)
         this.$Message.success('提交成功')

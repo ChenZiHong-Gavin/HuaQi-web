@@ -26,13 +26,13 @@
             </div>
             <div slot="right" class="page-split-pane">
                 <Card :bordered="false">
-                <p>基金档案{{file}}</p>
+                <p>基金档案：{{file}}</p>
                 </Card>
                 <Card :bordered="false">
-                <p>基金经理{{manager}}</p>
+                <p>基金经理：{{manager}}</p>
                 </Card>
                 <Card :bordered="false">
-                <p>投资分布{{distribution}}</p>
+                <p>投资分布：{{distribution}}</p>
                 </Card>
             </div>
         </Split>
@@ -78,8 +78,7 @@ export default {
       ],
       data1: [
         {
-          time: '近一周',
-          // this.detail.
+          time: '近1周',
           rate: '',
           rank: ''
         },
@@ -107,6 +106,12 @@ export default {
       // console.log(this.detail)
       this.detail = res.data.data
       // console.log(this.detail)
+      // 基金经理
+      this.manager = this.detail.first.manager
+      // 一段时间内涨跌幅
+      this.data1[1].rate = this.detail.second.monthRate
+      this.data1[2].rate = this.detail.second.threeMonthsRate
+      this.data1[3].rate = this.detail.second.yearRate
     })
   },
   methods: {
