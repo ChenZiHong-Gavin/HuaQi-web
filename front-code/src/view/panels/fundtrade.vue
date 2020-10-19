@@ -65,44 +65,13 @@ export default {
         },
         {
           // action
-          title: '操作',
+          title: '基金细节',
           slot: 'action',
           width: 150,
-          align: 'center'
+          align: 'left'
         }
       ],
       data8: [
-        {
-          name: 'NJU奖学金',
-          value: 100000,
-          change: 'default',
-          profit: 'default'
-        },
-        {
-          name: 'NJU奖学金',
-          value: 80000,
-          change: 'default',
-          profit: 'default',
-          cellClassName: {
-            value: 'demo-table-info-cell-age',
-            change: 'demo-table-info-cell-address'
-          }
-        },
-        {
-          name: 'PKU奖学金',
-          value: 1,
-          change: 'default',
-          profit: 'default'
-        },
-        {
-          name: 'PKU奖学金',
-          value: 1,
-          change: 'default',
-          profit: 'default',
-          cellClassName: {
-            name: 'demo-table-info-cell-name'
-          }
-        }
       ],
       fundCodes: []
     }
@@ -136,6 +105,19 @@ export default {
       console.log(res)
       for (let i = 0; i < res.data.data.length; i++) {
         this.fundCodes.push(res.data.data[i].first.fundCode)
+        // 更新一下data8创建表格
+        this.data8.push(
+          {
+            // 基金名称
+            name: res.data.data[i].first.fundName,
+            // 单位净值
+            value: res.data.data[i].second.acValue,
+            // 日涨跌幅
+            change: res.data.data[i].second.allRate,
+            // 近一周收益
+            profit: res.data.data[i].second.value
+          }
+        )
       }
       console.log(this.fundCodes)
     })
