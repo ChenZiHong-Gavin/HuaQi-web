@@ -24,8 +24,8 @@
     </section>
         </TabPane>
         <TabPane label="我的推荐">
-          <p>我的测评报告</p>
-          <p>推荐组合</p>
+          <h1>我的测评报告</h1>
+          <h1>推荐组合</h1>
         </TabPane>
     </Tabs>
 </template>
@@ -66,6 +66,7 @@ export default {
             radius: '55%',
             center: ['50%', '60%'],
             data: [
+              // 输入value可以自动计算比例
               { value: 335, name: '基金1' },
               { value: 310, name: '基金2' },
               { value: 234, name: '基金3' },
