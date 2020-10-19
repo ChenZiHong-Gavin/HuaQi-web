@@ -89,13 +89,12 @@ export default {
     },
     gotoUserPanel () {
       this.$router.push({
-        path: '/userpanel',
-        query: {
-          // 用query方式向下一个组件传递数据
-          id: this.formInline.id
-        }
-
-      })
+        path: '/userpanel'
+        // query: {
+        //   // 用query方式向下一个组件传递数据
+        //   id: this.formInline.id
+        // }
+      }).catch(err => err)
     },
     handleLogin (name) {
       this.$refs[name].validate((valid) => {

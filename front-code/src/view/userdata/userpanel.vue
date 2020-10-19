@@ -60,7 +60,7 @@ export default {
     http (idnum) {
       // 这个方法名可以自定义，不一定要叫http
       showUserReq(idnum).then(res => {
-        console.log(res)
+        // console.log(res)
         this.username = globalDefault.user.username
       })
     }
