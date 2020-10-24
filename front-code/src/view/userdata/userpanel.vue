@@ -1,6 +1,9 @@
 <template>
     <div class="demo-split">
          <Card style="width:100%">
+           <Card style="width:70%" float="right">
+            <Avatar icon="ios-person" size="large" />
+            </Card>
         <div style="text-align:center">
             <h3>用户信息</h3>
             <Card style="width:30%">
