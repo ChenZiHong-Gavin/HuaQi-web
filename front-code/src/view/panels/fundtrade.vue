@@ -1,33 +1,7 @@
-<style>
-    .ivu-table .demo-table-info-row td{
-        background-color: #2db7f5;
-        color: #fff;
-    }
-    .ivu-table .demo-table-error-row td{
-        background-color: #ff6600;
-        color: #fff;
-    }
-    .ivu-table td.demo-table-info-column{
-        background-color: #2db7f5;
-        color: #fff;
-    }
-    .ivu-table .demo-table-info-cell-name {
-        background-color: #2db7f5;
-        color: #fff;
-    }
-    .ivu-table .demo-table-info-cell-age {
-        background-color: #ff6600;
-        color: #fff;
-    }
-    .ivu-table .demo-table-info-cell-address {
-        background-color: #187;
-        color: #fff;
-    }
-</style>
 <template>
     <div class="fundtrade">
     <h1>优选基金</h1>
-    <Table border :columns="columns1" :data="data8">
+    <Table border :columns="columns1" :data="historyData">
       <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
         </template>
@@ -35,6 +9,7 @@
             <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>
         </template>
     </Table>
+    <Page :total="dataCount" :page-size="pageSize" show-total class="paging" @on-change="changepage" @on-page-size-change="changepagesize"></Page>
     </div>
 </template>
 <script>
@@ -72,19 +47,52 @@ export default {
         }
       ],
       data8: [
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        },
+        {
+          name: 'test'
+        }
       ],
-      fundCodes: []
+      fundCodes: [],
+      // 初始化信息总条数
+      dataCount: 0,
+      // 每页显示多少条
+      pageSize: 10,
+      historyData: []
     }
   },
   methods: {
-    rowClassName (row, index) {
-      if (index === 1) {
-        return 'demo-table-info-row'
-      } else if (index === 3) {
-        return 'demo-table-error-row'
-      }
-      return ''
-    },
     show (index) {
       // 这里调用的方法根据index区别
       // this.$Modal.info({
@@ -98,6 +106,26 @@ export default {
           fundCode: this.fundCodes[index]
         }
       })
+    },
+    // 获取历史记录信息
+    handleListApproveHistory () {
+    // 保存取到的所有数据
+      this.dataCount = this.data8.length
+      // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
+      if (this.dataCount < this.pageSize) {
+        this.historyData = this.data8
+      } else {
+        this.historyData = this.data8.slice(0, this.pageSize)
+      }
+    },
+    changepage (index) {
+      var _start = (index - 1) * this.pageSize
+      var _end = index * this.pageSize
+      this.historyData = this.data8.slice(_start, _end)
+    },
+    changepagesize (pageSize) {
+      this.pageSize = pageSize
+      this.handleListApproveHistory()
     }
   },
   mounted () {
@@ -121,6 +149,7 @@ export default {
       }
       console.log(this.fundCodes)
     })
+    this.handleListApproveHistory()
   }
 }
 
