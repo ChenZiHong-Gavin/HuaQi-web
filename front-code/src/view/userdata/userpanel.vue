@@ -45,6 +45,24 @@ export default {
     this.http(this.userId)
   },
   methods: {
+    Confirm () {
+      this.$Modal.confirm({
+        content: '您的测评结果是:' + '是否重新进行测试？',
+        okText: '重新测试',
+        cancelText: '返回用户界面',
+        onOk: () => {
+          // 重新测试
+          this.$router.push({
+            path: '/testpage'
+          })
+        },
+        onCancel: () => {
+          this.$router.push({
+            path: '/userpanel'
+          })
+        }
+      })
+    },
     gotoTestpage () {
       this.$router.push({
         path: '/testpage'

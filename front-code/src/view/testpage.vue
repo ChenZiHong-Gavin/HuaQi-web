@@ -252,22 +252,6 @@ export default {
     this.$parent.$data.showname = true
   },
   methods: {
-    Confirm () {
-      this.$Modal.confirm({
-        content: '<p>你的测评分数是：' + globalDefault.user.objectiveInvestmentPreference + '</p><p>是否选择重做？</p>',
-        okText: '重新测试',
-        cancelText: '返回用户界面',
-        onOk: () => {
-          // 重新测试
-          this.$router.go(0)
-        },
-        onCancel: () => {
-          this.$router.push({
-            path: '/userpanel'
-          })
-        }
-      })
-    },
     handleSubmit () {
       if (this.content.value1 === '' || this.content.value2 === '' || this.content.value3 === '' || this.content.value4 === '' || this.content.value5 === '' || this.content.value6 === '' || this.content.value7 === '' || this.content.value8 === '' || this.content.value9 === '' || this.content.value10 === '' || this.content.value11 === '' || this.content.value12 === '' || this.content.value13 === '') {
         this.$Message.error('请检查是否填写完整')
@@ -283,7 +267,6 @@ export default {
         surveyReq(globalDefault.user.username, globalDefault.user.password, globalDefault.user.subjectiveRiskPreference,
           globalDefault.user.objectiveInvestmentPreference, globalDefault.user.plannedInvestmentCycle, globalDefault.user.plannedTotalInvestmentAccount)
         this.$Message.success('提交成功')
-        this.Confirm()
       }
     },
     handleReset (name) {

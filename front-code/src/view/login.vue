@@ -113,6 +113,10 @@ export default {
               globalDefault.user.id = res.data.data.id
               globalDefault.user.username = res.data.data.username
               globalDefault.user.password = res.data.data.password
+              globalDefault.user.subjectiveRiskPreference = res.data.data.subjective_risk_preference
+              globalDefault.user.plannedInvestmentCycle = res.data.data.planned_investment_cycle
+              globalDefault.user.plannedTotalInvestmentAccount = res.data.data.planned_total_investment_account
+              globalDefault.user.objectiveInvestmentPreference = res.data.data.objective_investment_preference
               // console.log(globalDefault.user)
               this.$Message.success('登录成功')
               this.gotoUserPanel()
