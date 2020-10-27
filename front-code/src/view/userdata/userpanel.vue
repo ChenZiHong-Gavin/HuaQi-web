@@ -64,9 +64,15 @@ export default {
       })
     },
     gotoTestpage () {
-      this.$router.push({
-        path: '/testpage'
-      })
+      if (globalDefault.user.subjectiveRiskPreference === 0) {
+        // 还没有进行过测试
+        this.$router.push({
+          path: '/testpage'
+        })
+      } else {
+        // 已经测试过了
+        this.Confirm()
+      }
     },
     gotoIndex () {
       this.$router.push({
