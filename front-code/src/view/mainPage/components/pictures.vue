@@ -2,7 +2,7 @@
 <!-- 走马灯组件 -->
 <div class="light">
   <div id="pictures">
-   <el-carousel :interval="5000" arrow="always">
+   <el-carousel :interval="4000" type="card" height="500px">
     <el-carousel-item v-for="(img,index) in imgList" :key="index">
       <img v-bind:src="img.url">
     </el-carousel-item>
@@ -36,6 +36,7 @@ export default {
       text-align: center;
     }
     #pictures {
+        margin: 0 auto;
         width: 100%;
         position: absolute;
         justify-content: center;    /*水平居中*/
