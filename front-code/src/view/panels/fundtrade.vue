@@ -1,27 +1,35 @@
 <template>
     <div class="fundtrade">
     <h1>优选基金</h1>
-    <Table border :columns="columns1" :data="historyData">
+    <filter-table @on-search="onSearch"
+                  border
+                  :columns="columns1"
+                  :data="historyData">
       <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
         </template>
         <template slot-scope="{ row, index }" slot="action">
             <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>
         </template>
-    </Table>
+    </filter-table>
     <Page :total="dataCount" :page-size="pageSize" show-total class="paging" @on-change="changepage" @on-page-size-change="changepagesize"></Page>
     </div>
 </template>
 <script>
 import { showFundListReq } from '../../api/fund'
+import FilterTable from '../mainPage/components/FilterTable.vue'
 export default {
+  components: { FilterTable },
   data () {
     return {
       columns1: [
         {
           // 基金名称
           title: '基金名称',
-          key: 'name'
+          key: 'name',
+          filter: {
+            type: 'Input'
+          }
         },
         {
           // 单位净值
@@ -48,40 +56,40 @@ export default {
       ],
       data8: [
         {
-          name: 'test'
+          name: 'test1'
         },
         {
-          name: 'test'
+          name: 'test2'
         },
         {
-          name: 'test'
+          name: 'test3'
         },
         {
-          name: 'test'
+          name: 'test4'
         },
         {
-          name: 'test'
+          name: 'test5'
         },
         {
-          name: 'test'
+          name: 'test6'
         },
         {
-          name: 'test'
+          name: 'test7'
         },
         {
-          name: 'test'
+          name: 'test8'
         },
         {
-          name: 'test'
+          name: 'test9'
         },
         {
-          name: 'test'
+          name: 'test10'
         },
         {
-          name: 'test'
+          name: 'test11'
         },
         {
-          name: 'test'
+          name: 'test12'
         }
       ],
       fundCodes: [],
@@ -93,6 +101,22 @@ export default {
     }
   },
   methods: {
+    onSearch (search) {
+      // 查询数据
+      var itemIndex = 1
+      var index = this.data8.findIndex(function (item) {
+        if (search.name === item.name) {
+          return itemIndex
+        } else {
+          itemIndex = itemIndex + 1
+        }
+      })
+      if (index === -1) {
+        alert('没有该基金')
+      } else {
+        alert('该基金在第' + parseInt(index / this.pageSize + 1) + '页第' + (index % this.pageSize + 1) + '行')
+      }
+    },
     show (index) {
       // 这里调用的方法根据index区别
       // this.$Modal.info({
