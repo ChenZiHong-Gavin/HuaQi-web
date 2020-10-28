@@ -1,6 +1,7 @@
 <template>
-    <div class="fundtrade">
-    <h1>优选基金</h1>
+    <div class="fundtrade" id="fundtrade">
+    <h1 style="color:#ffffff">优选基金</h1>
+    <div class="table">
     <filter-table @on-search="onSearch"
                   border
                   :columns="columns1"
@@ -8,10 +9,8 @@
       <template slot-scope="{ row }" slot="name">
             <strong>{{ row.name }}</strong>
         </template>
-        <template slot-scope="{ row, index }" slot="action">
-            <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>
-        </template>
     </filter-table>
+    </div>
     <Page :total="dataCount" :page-size="pageSize" show-total class="paging" @on-change="changepage" @on-page-size-change="changepagesize"></Page>
     </div>
 </template>
@@ -51,7 +50,23 @@ export default {
           title: '基金细节',
           slot: 'action',
           width: 150,
-          align: 'left'
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  size: 'small',
+                  type: 'primary'
+                },
+                on: {
+                  click: e => {
+                    console.log('111')
+                    this.show(params.index)
+                  }
+                }
+              }, 'view')
+            ])
+          }
         }
       ],
       data8: [
@@ -178,3 +193,7 @@ export default {
 }
 
 </script>
+
+<style scoped>
+
+</style>
