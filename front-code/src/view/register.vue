@@ -126,10 +126,10 @@ export default {
         position: relative;
     }
     #wrap .logGet {
-        height: 408px;
+        height: 438px;
         width: 368px;
         position: absolute;
-        background-color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.6);
         top: 50px;
     }
     .logC a button {

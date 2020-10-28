@@ -1,5 +1,5 @@
 <template>
-    <div class="wrap" id="wrap">
+    <div class="wrap1" id="wrap1">
         <div class="logGet">
             <!-- 头部提示信息 -->
             <div class="logD logDtip">
@@ -141,7 +141,7 @@ export default {
         margin: 0 auto;
         padding: 0;
     }
-    #wrap {
+    #wrap1 {
         height: 600px;
         width: 100%;
         background-position: center center;
@@ -152,15 +152,15 @@ export default {
     #head {
         height: 120px;
         width: 100%;
-        background-color: #66CCCC;
+        background-color: rgb(15, 216, 216);
         text-align: center;
         position: relative;
     }
-    #wrap .logGet {
-        height: 408px;
+    #wrap1 .logGet {
+        height: 478px;
         width: 368px;
         position: absolute;
-        background-color: #FFFFFF;
+        background-color: rgba(255, 255, 255, 0.6);
         top: 50px;
     }
     .logC a button {
@@ -177,7 +177,7 @@ export default {
         margin-top: 30px;
         width: 86%;
     }
-    #wrap .logGet .logD.logDtip {
+    #wrap1 .logGet .logD.logDtip {
         width: 86%;
         border-bottom: 1px solid #5cadff;
         margin-bottom: 60px;
@@ -195,7 +195,7 @@ export default {
         height: 42px;
         text-indent: 2.5rem;
     }
-    #wrap .logGet .lgD {
+    #wrap1 .logGet .lgD {
         width: 86%;
         position: relative;
         margin-bottom: 30px;
@@ -203,7 +203,7 @@ export default {
         margin-right: auto;
         margin-left: auto;
     }
-    #wrap .logGet .logC {
+    #wrap1 .logGet .logC {
         width: 86%;
         margin-top: 0px;
         margin-right: auto;
