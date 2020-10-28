@@ -1,5 +1,7 @@
 <template>
     <div class="demo-split">
+      <v-leftpanel>
+    </v-leftpanel>
          <Card style="width:100%">
            <Card style="width:70%" float="right">
             <Avatar icon="ios-person" size="large" />
@@ -26,11 +28,15 @@
     </div>
 </template>
 <script>
+import LeftPanel from './leftpanel'
 import { showUserReq } from '@/api/user'
 import globalDefault from '../../Global'
 export default {
   watch: {
     '$route': 'getParams'
+  },
+  components: {
+    'v-leftpanel': LeftPanel
   },
   data () {
     return {

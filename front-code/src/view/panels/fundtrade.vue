@@ -1,8 +1,15 @@
+<style>
+    .ivu-table td.bgc{
+        background-color: #80252596;
+        color: #ffffff00;
+    }
+</style>
 <template>
     <div class="fundtrade" id="fundtrade">
     <h1 style="color:#ffffff">优选基金</h1>
-    <div class="table">
     <filter-table @on-search="onSearch"
+                  @on-selection-change="onSelect"
+                  no-data-text="暂无数据"
                   border
                   :columns="columns1"
                   :data="historyData">
@@ -10,7 +17,6 @@
             <strong>{{ row.name }}</strong>
         </template>
     </filter-table>
-    </div>
     <Page :total="dataCount" :page-size="pageSize" show-total class="paging" @on-change="changepage" @on-page-size-change="changepagesize"></Page>
     </div>
 </template>
@@ -38,7 +44,8 @@ export default {
         {
           // 日涨跌幅
           title: '日涨跌幅',
-          key: 'change'
+          key: 'change',
+          className: 'bgc'
         },
         {
           // 近一周收入
@@ -193,7 +200,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-
-</style>
